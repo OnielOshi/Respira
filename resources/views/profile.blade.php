@@ -74,7 +74,7 @@
                                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                                     <!-- Profile Edit Form -->
-                                    <form>
+                                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                                         <div class="row mb-3">
                                             <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
                                                 Image</label>
