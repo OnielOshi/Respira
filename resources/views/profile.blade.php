@@ -13,8 +13,8 @@
                     <div class="card">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                            <img src="build/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle mb-4">
-                            <h2 class="mb-4">Kevin Anderson</h2>
+                            <img src="build/assets/img/{{ $user->foto }}" alt="Profile" class="rounded-circle mb-4">
+                            <h2 class="mb-4">{{ $user->name }}</h2>
                         </div>
                     </div>
 
@@ -51,7 +51,7 @@
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                                        <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                                        <div class="col-lg-9 col-md-8">{{ $user->name }}</div>
                                     </div>
 
                                     <div class="row">
@@ -61,12 +61,12 @@
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Phone</div>
-                                        <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                                        <div class="col-lg-9 col-md-8">{{ $user->notelp }}</div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Email</div>
-                                        <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
+                                        <div class="col-lg-9 col-md-8">{{ $user->email }}</div>
                                     </div>
 
                                 </div>
@@ -74,27 +74,32 @@
                                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                                     <!-- Profile Edit Form -->
-                                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('profile.update', $user->id) }}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
                                         <div class="row mb-3">
                                             <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
                                                 Image</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <img src="build/assets/img/profile-img.jpg" alt="Profile">
+                                                @if ($user->foto)
+                                                    <img src="{{ asset('build/assets/img/' . $user->foto) }}" alt="Profile Image"
+                                                        width="100">
+                                                @else
+                                                    <img src="build/assets/img/profile-img.jpg" alt="Profile Image">
+                                                @endif
                                                 <div class="pt-2">
-                                                    <a href="#" class="btn btn-primary btn-sm"
-                                                        title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                                                    <a href="#" class="btn btn-danger btn-sm"
-                                                        title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                                                    <input type="file" name="foto" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
-                                            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full
+                                            <label for="name" class="col-md-4 col-lg-3 col-form-label">Full
                                                 Name</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="fullName" type="text" class="form-control" id="fullName"
-                                                    value="Kevin Anderson">
+                                                <input name="name" type="text" class="form-control" id="name"
+                                                    value="{{ $user->name }}">
                                             </div>
                                         </div>
 
@@ -109,8 +114,8 @@
                                         <div class="row mb-3">
                                             <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="phone" type="text" class="form-control" id="Phone"
-                                                    value="(436) 486-3538 x29071">
+                                                <input name="notelp" type="text" class="form-control" id="notelp"
+                                                    value="{{ $user->notelp }}">
                                             </div>
                                         </div>
 
@@ -118,7 +123,7 @@
                                             <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="email" type="email" class="form-control" id="Email"
-                                                    value="k.anderson@example.com">
+                                                    value="{{ $user->email }}">
                                             </div>
                                         </div>
 
@@ -135,39 +140,54 @@
 
                                 <div class="tab-pane fade pt-3" id="profile-change-password">
                                     <!-- Change Password Form -->
-                                    <form>
-
-                                        <div class="row mb-3">
-                                            <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current
-                                                Password</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="password" type="password" class="form-control"
-                                                    id="currentPassword">
+                                    {{-- <form method="POST" action="{{ route('profile.changePassword') }}">
+                                        @csrf
+                                        @method('PUT')
+                
+                                        <div class="form-group row">
+                                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Current Password') }}</label>
+                
+                                            <div class="col-md-6">
+                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                
+                                                @error('password')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
-
-                                        <div class="row mb-3">
-                                            <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New
-                                                Password</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="newpassword" type="password" class="form-control"
-                                                    id="newPassword">
+                
+                                        <div class="form-group row">
+                                            <label for="newpassword" class="col-md-4 col-form-label text-md-right">{{ __('New Password') }}</label>
+                
+                                            <div class="col-md-6">
+                                                <input id="newpassword" type="password" class="form-control @error('newpassword') is-invalid @enderror" name="newpassword" required autocomplete="new-password">
+                
+                                                @error('newpassword')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
-
-                                        <div class="row mb-3">
-                                            <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter
-                                                New Password</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="renewpassword" type="password" class="form-control"
-                                                    id="renewPassword">
+                
+                                        <div class="form-group row">
+                                            <label for="newpassword_confirmation" class="col-md-4 col-form-label text-md-right">{{ __('Confirm New Password') }}</label>
+                
+                                            <div class="col-md-6">
+                                                <input id="newpassword_confirmation" type="password" class="form-control" name="newpassword_confirmation" required autocomplete="new-password">
                                             </div>
                                         </div>
-
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-primary">Change Password</button>
+                
+                                        <div class="form-group row mb-0">
+                                            <div class="col-md-6 offset-md-4">
+                                                <button type="submit" class="btn btn-primary">
+                                                    {{ __('Change Password') }}
+                                                </button>
+                                            </div>
                                         </div>
-                                    </form><!-- End Change Password Form -->
+                                    </form><!-- End Change Password Form --> --}}
 
                                 </div>
 

@@ -19,6 +19,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/diagnosa', [App\Http\Controllers\DiagnosaController::class, 'index'])->name('diagnosa');
 Route::get('/riwayat', [App\Http\Controllers\RiwayatController::class, 'index'])->name('riwayat');
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+Route::put('profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
+// Route::put('profile', [ProfileController::class, 'changePassword'])->name('profile.changePassword');
 route::get('hasil', [App\Http\Controllers\HasilController::class, 'index'])->name('hasil');
 
 // ADMIN ROUTE
