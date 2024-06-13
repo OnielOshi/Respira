@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.adm')
 
-@section('content')
-<div class="container mt-5">
-        <h1 class="text-center">Daftar Relasi</h1>
+@section('admcontent')
+<div class="container mt-1">
+        <h3 class="text-center">Daftar Relasi</h3>
         <div class="d-flex justify-content-left mb-3">
             <a href="{{ route('relasi.create') }}" class="btn btn-primary">Tambah Data</a>
         </div>

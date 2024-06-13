@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.adm')
 
-@section('content')
-<div class="container mt-5">
+@section('admcontent')
+<div class="container mt-1">
     <div class="card mx-auto" style="max-width: 600px;">
         <div class="card-body">
-            <h1 class="card-title text-center mb-4">Tambah Data Gejala</h1>
+            <h3 class="card-title text-center mb-4">Tambah Data Gejala</h3>
             <form action="{{ route('gejala.store') }}" method="POST">
                 @csrf
                 <div class="mb-3">

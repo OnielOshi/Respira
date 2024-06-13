@@ -23,6 +23,8 @@ Route::put('profile/{id}', [ProfileController::class, 'update'])->name('profile.
 // Route::put('profile', [ProfileController::class, 'changePassword'])->name('profile.changePassword');
 route::get('hasil', [App\Http\Controllers\HasilController::class, 'index'])->name('hasil');
 
+Route::post('diagnosa', [App\Http\Controllers\DiagnosaController::class, 'processDiagnosis'])->name('diagnosa.process');
+
 // ADMIN ROUTE
 Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('dashboard');
 
