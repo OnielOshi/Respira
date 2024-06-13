@@ -5,22 +5,25 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\TingkatstressController;
 use App\Http\Controllers\GejalaController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RelasiController;
 use App\Http\Controllers\ProfileController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/diagnosa', [App\Http\Controllers\DiagnosaController::class, 'index'])->name('diagnosa');
 Route::get('/riwayat', [App\Http\Controllers\RiwayatController::class, 'index'])->name('riwayat');
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
 Route::put('profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
-// Route::put('profile', [ProfileController::class, 'changePassword'])->name('profile.changePassword');
+// Route::put('/profile', [ProfileController::class, 'changePassword'])
+//     ->name('profile.changePassword')
+//     ->middleware('auth');
 route::get('hasil', [App\Http\Controllers\HasilController::class, 'index'])->name('hasil');
 
 Route::post('diagnosa', [App\Http\Controllers\DiagnosaController::class, 'processDiagnosis'])->name('diagnosa.process');

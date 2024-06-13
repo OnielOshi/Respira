@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mb-3">
-    <h1 class="fw-bold">Mulai Perjalanan Menuju Kebahagiaan</h1>
-    <h2 class="fw-semibold">Jawab pertanyaan diagnosa dan temukan solusinya</h2>
+<div class="container my-4">
+    <h1 class="fw-bold text-black">Mulai Perjalanan Menuju Kebahagiaan</h1>
+    <h2 class="fw-semibold" style="color: #08254F">Jawab pertanyaan diagnosa dan temukan solusinya</h2>
 </div>
-<div class="container pb-3 bg-secondary rounded-4">
-    <div class="container pb-3 bg-secondary rounded-4">
+<div class="container pb-3 rounded-4 p-3" style="background-color: rgb(218, 218, 218)">
+    <div class="container pb-3 rounded-4">
 
     <form action="{{ route('diagnosa.process') }}" method="POST">
     @csrf
