@@ -5,19 +5,19 @@
     <div class="row">
         <!-- Kolom kiri -->
         <div class="col-md-7 p-5 d-flex justify-content-center align-items-center">
-            <div class="p-5">
-                <h1 class="display-5 fw-bold">{{ __('Bebaskan Diri dari Stress') }}</h1>
-                <h2 class="h3 fw-bold">{{ __('dan Raih Keberhasilan') }}</h2>
-                <p class="lead fw-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tempor justo a dolor ornare, eget maximus turpis tincidunt.</p>
+            <div class="p-5 rounded-4">
+                <h1 class="display-5 fw-bold text-black">{{ __('Bebaskan Diri dari Stress') }}</h1>
+                <h2 class="h3 fw-bold" style="color: #08254F;">{{ __('dan Raih Keberhasilan') }}</h2>
+                <p class="lead fw-normal text-black"><p class="lead fw-normal">{{ __('Aplikasi ini membantu deteksi dini stress kerja, memberikan solusi untuk meningkatkan kesejahteraan dan produktivitas Anda.') }}</p></p>
             </div>
         </div>
 
         <!-- Kolom kanan -->
         <div class="col-md-5 p-3">
             <div class="p-5 rounded-4" style="background-image: url('{{ asset('build/assets/img/login_img.png') }}'); background-size: cover;">
-                <div class="card rounded-4">
-                    <div class="card-header text-center rounded-5 fw-bold">{{ __('Register') }}</div>
-                    <div class="card-body px-5">
+                <div class="card rounded-4" style="color: #08254F">
+                    <div class="card-header text-center rounded-5 fw-bold" style="color: #08254F">{{ __('Register') }}</div>
+                    <div class="card-body px-5 ">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
