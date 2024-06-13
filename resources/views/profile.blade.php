@@ -140,7 +140,7 @@
 
                                 <div class="tab-pane fade pt-3" id="profile-change-password">
                                     <!-- Change Password Form -->
-                                    {{-- <form method="POST" action="{{ route('profile.changePassword') }}">
+                                    {{-- <form method="POST" action="{{ route('profile.changePassword', $user->id) }}">
                                         @csrf
                                         @method('PUT')
                 

@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
@@ -43,30 +42,31 @@ class ProfileController extends Controller
             unset($validatedData['password']);
         }
         
+        $user->fill($validatedData);
         $user->update($validatedData);
 
         return redirect()->route('profile')->with('success', 'Profile updated successfully');
     }
 
-    // public function changePassword(Request $request)
+    // public function changePassword(Request $request, $id)
     // {
-    //     $request->validate([
-    //         'password' => 'required|string',
-    //         'newpassword' => 'required|string|min:8|confirmed',
+    //     $user = User::findOrFail($id);
+    //     // Validate the request data
+    //     $validatedData = $request->validate([
+    //         'password' => 'required',
+    //         'newpassword' => 'required|min:8|confirmed',
     //     ]);
 
-    //     $user = Auth::user();
-
-    //     // Validasi password saat ini
+    //     // Check if the current password matches
     //     if (!Hash::check($request->password, $user->password)) {
-    //         return redirect()->back()->withErrors(['password' => 'Current password is incorrect']);
+    //         return back()->withErrors(['password' => 'The current password is incorrect']);
     //     }
 
-    //     // Update password baru
-    //     $user->fill([
-    //         'password' => Hash::make($request->newpassword),
-    //     ])->save();
+    //     // Update the user's password
+    //     $user->password = Hash::make($request->newpassword);
+    //     $user->save();
 
-    //     return redirect()->route('profile')->with('success', 'Password changed successfully');
+    //     // Redirect back with a success message
+    //     return back()->with('success', 'Password changed successfully.');
     // }
 }

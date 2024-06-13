@@ -39,7 +39,7 @@
     <div id="app">
         @include('components.navbar')
 
-        <main class="py-4" style="margin-top: 100px">
+        <main class="py-4" style="margin-top: 80px">
             @yield('content')
         </main>
     </div>
