@@ -7,18 +7,18 @@
     <div class="container d-flex justify-content-between">
         <div class="col-md-2">
             <div class="card info-card sales-card">
-                <div class="card-body">
-                    <h5 class="card-title">Tidak Stress </h5>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Tidak Stress</h5>
                     <div class="d-flex align-items-center justify-content-center">
                         <div class="ps-3">
                             <h6>145 %</h6>
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-start">
-                        <div class="ps-3">
+                        {{-- <div class="ps-3">
                             <span class="text-success small pt-1 fw-bold">12%</span> <span
                                 class="text-muted small pt-2 ps-1">increase</span>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
         <div class="col-md-2">
             <div class="card info-card sales-card">
                 <div class="card-body">
-                    <h5 class="card-title">Sales <span>| Today</span></h5>
+                    <h5 class="card-title">Stress Rendah</h5>
                     <div class="d-flex align-items-center justify-content-center">
                         <div class="ps-3">
                             <h6>145</h6>
@@ -44,7 +44,7 @@
         <div class="col-md-2">
             <div class="card info-card sales-card">
                 <div class="card-body">
-                    <h5 class="card-title">Sales <span>| Today</span></h5>
+                    <h5 class="card-title">Stress Sedang</span></h5>
                     <div class="d-flex align-items-center justify-content-center">
                         <div class="ps-3">
                             <h6>145</h6>
@@ -62,7 +62,7 @@
         <div class="col-md-2">
             <div class="card info-card sales-card">
                 <div class="card-body">
-                    <h5 class="card-title">Sales <span>| Today</span></h5>
+                    <h5 class="card-title">Stress Tinggi</span></h5>
                     <div class="d-flex align-items-center justify-content-center">
                         <div class="ps-3">
                             <h6>145</h6>

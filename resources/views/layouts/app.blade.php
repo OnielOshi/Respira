@@ -28,6 +28,9 @@
 
     <!-- Vendor JS Files -->
     <script src="{{ URL::asset('build/assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
+    <!-- Bootstrap JavaScript (Popper.js and Bootstrap JavaScript) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
