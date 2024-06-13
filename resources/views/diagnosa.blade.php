@@ -5,7 +5,7 @@
     <h1 class="fw-bold">Mulai Perjalanan Menuju Kebahagiaan</h1>
     <h2 class="fw-semibold">Jawab pertanyaan diagnosa dan temukan solusinya</h2>
 </div>
-<div class="container pb-3 bg-secondary rounded-4">
+<div class="container pb-3 bg-secondary rounded-4 p-3">
     <div class="container pb-3 bg-secondary rounded-4">
 
         <form action="" method="POST">
