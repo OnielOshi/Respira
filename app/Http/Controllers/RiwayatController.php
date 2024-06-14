@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Tingkatstress;
 use App\Models\Diagnosa;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class RiwayatController extends Controller
 {
@@ -13,13 +14,17 @@ class RiwayatController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
-{   
-    // Ambil diagnosa terbaru untuk pengguna yang sedang login
-    $diagnosa = Diagnosa::where('user_id', auth()->user()->id)
-                               ->latest()
-                               ->first();
+    //     public function index()
+    // {   
+    //     $user = Auth::user(); 
+    //     $latestDiagnose = $user->diagnoses()
+    //                            ->orderByDesc('waktu_diagnosa')
+    //                            ->first();
 
-    return view('riwayat', compact('diagnosa'));
-}
+    //     return view('riwayat', compact('diagnosa'));
+    // }
+    public function index()
+    {
+        return view('riwayat');
+    }
 }
