@@ -15,4 +15,13 @@ class Diagnosa extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected $fillable = [
+        'user_id',
+        'waktu_diagnosa',
+        'persentase_penyakit_1',
+        'persentase_penyakit_2',
+        'persentase_penyakit_3',           
+        'persentase_penyakit_4',
+    ];
 }
