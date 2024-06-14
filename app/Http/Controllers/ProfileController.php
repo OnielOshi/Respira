@@ -19,7 +19,8 @@ class ProfileController extends Controller
         return view('profile', compact('user'));
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request){
+        $id = Auth::id();
         $user = User::findOrFail($id);
 
         $validatedData = $request->validate([
@@ -27,7 +28,6 @@ class ProfileController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email,'. $user->id,
             'notelp' => 'required|string|max:13',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'password' => 'nullable|string|min:8|confirmed',
         ]);
         
         if ($request->hasFile('foto')) {
@@ -48,25 +48,26 @@ class ProfileController extends Controller
         return redirect()->route('profile')->with('success', 'Profile updated successfully');
     }
 
-    // public function changePassword(Request $request, $id)
-    // {
-    //     $user = User::findOrFail($id);
-    //     // Validate the request data
-    //     $validatedData = $request->validate([
-    //         'password' => 'required',
-    //         'newpassword' => 'required|min:8|confirmed',
-    //     ]);
+    public function changePassword(Request $request)
+    {
+        $id = Auth::id();
+        $user = User::findOrFail($id);
+        // Validate the request data
+        $validatedData = $request->validate([
+            'password' => 'required',
+            'newpassword' => 'required|min:8|confirmed',
+        ]);
 
-    //     // Check if the current password matches
-    //     if (!Hash::check($request->password, $user->password)) {
-    //         return back()->withErrors(['password' => 'The current password is incorrect']);
-    //     }
+        // Check if the current password matches
+        if (!Hash::check($request->password, $user->password)) {
+            return back()->withErrors(['password' => 'The current password is incorrect']);
+        }
 
-    //     // Update the user's password
-    //     $user->password = Hash::make($request->newpassword);
-    //     $user->save();
+        // Update the user's password
+        $user->password = Hash::make($request->newpassword);
+        $user->save();
 
-    //     // Redirect back with a success message
-    //     return back()->with('success', 'Password changed successfully.');
-    // }
+        // Redirect back with a success message
+        return back()->with('success', 'Password changed successfully.');
+    }
 }

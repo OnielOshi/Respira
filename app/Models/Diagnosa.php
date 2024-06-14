@@ -11,8 +11,8 @@ class Diagnosa extends Model
 
     protected $table = 'diagnoses';
     
-    // public function users()
-    // {
-    //     return $this->belongsTo(User::class, 'user_id');
-    // }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Diagnosa;
 
 class HomeController extends Controller
 {
@@ -24,6 +26,10 @@ class HomeController extends Controller
 
     public function adminDashboard()
     {
-        return view('dashboard.index');
+        $userCount = User::count();
+        $diagnosaCount = Diagnosa::count();
+        $diagnoses = Diagnosa::with('user')->get();
+
+        return view('dashboard.index', compact('userCount', 'diagnosaCount', 'diagnoses'));
     }
 }
