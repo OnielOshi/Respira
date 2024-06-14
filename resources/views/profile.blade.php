@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-xl-4">
 
-                    <div class="card">
+                    <div class="card rounded-4">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
                             <img src="build/assets/img/{{ $user->foto }}" alt="Profile" class="rounded-circle mb-4">
@@ -22,24 +22,24 @@
 
                 <div class="col-xl-8">
 
-                    <div class="card">
+                    <div class="card rounded-4">
                         <div class="card-body pt-3">
                             <!-- Bordered Tabs -->
                             <ul class="nav nav-tabs nav-tabs-bordered">
 
                                 <li class="nav-item">
                                     <button class="nav-link active" data-bs-toggle="tab"
-                                        data-bs-target="#profile-overview">Overview</button>
+                                        data-bs-target="#profile-overview">{{ __('Overview') }}</button>
                                 </li>
 
                                 <li class="nav-item">
-                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit
-                                        Profile</button>
+                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">{{ __('Edit
+                                        Profile')}}</button>
                                 </li>
 
                                 <li class="nav-item">
                                     <button class="nav-link" data-bs-toggle="tab"
-                                        data-bs-target="#profile-change-password">Change Password</button>
+                                        data-bs-target="#profile-change-password">{{ __('Change Password') }}</button>
                                 </li>
 
                             </ul>
@@ -47,25 +47,20 @@
 
                                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
 
-                                    <h5 class="card-title">Profile Details</h5>
+                                    <h5 class="card-title">{{ __('Profile Details') }}</h5>
 
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-4 label ">Full Name</div>
+                                        <div class="col-lg-3 col-md-4 label ">{{ __('Full Name') }}</div>
                                         <div class="col-lg-9 col-md-8">{{ $user->name }}</div>
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Address</div>
-                                        <div class="col-lg-9 col-md-8">A108 Adam Street, New York, NY 535022</div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Phone</div>
+                                        <div class="col-lg-3 col-md-4 label">{{ __('Phone') }}</div>
                                         <div class="col-lg-9 col-md-8">{{ $user->notelp }}</div>
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Email</div>
+                                        <div class="col-lg-3 col-md-4 label">{{ __('Email') }}</div>
                                         <div class="col-lg-9 col-md-8">{{ $user->email }}</div>
                                     </div>
 
@@ -79,8 +74,8 @@
                                         @csrf
                                         @method('PUT')
                                         <div class="row mb-3">
-                                            <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
-                                                Image</label>
+                                            <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">{{ __('Profile
+                                                Image')}}</label>
                                             <div class="col-md-8 col-lg-9">
                                                 @if ($user->foto)
                                                     <img src="{{ asset('build/assets/img/' . $user->foto) }}" alt="Profile Image"
@@ -95,8 +90,8 @@
                                         </div>
 
                                         <div class="row mb-3">
-                                            <label for="name" class="col-md-4 col-lg-3 col-form-label">Full
-                                                Name</label>
+                                            <label for="name" class="col-md-4 col-lg-3 col-form-label">{{ __('Full
+                                                Name')}}</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="name" type="text" class="form-control" id="name"
                                                     value="{{ $user->name }}">
@@ -104,15 +99,7 @@
                                         </div>
 
                                         <div class="row mb-3">
-                                            <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="address" type="text" class="form-control" id="Address"
-                                                    value="A108 Adam Street, New York, NY 535022">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                                            <label for="Phone" class="col-md-4 col-lg-3 col-form-label">{{ __('Phone') }}</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="notelp" type="text" class="form-control" id="notelp"
                                                     value="{{ $user->notelp }}">
@@ -120,7 +107,7 @@
                                         </div>
 
                                         <div class="row mb-3">
-                                            <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                                            <label for="Email" class="col-md-4 col-lg-3 col-form-label">{{ __('Email') }}</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="email" type="email" class="form-control" id="Email"
                                                     value="{{ $user->email }}">
@@ -128,7 +115,7 @@
                                         </div>
 
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                                            <button type="submit" class="btn btn-primary">{{ __('Save Changes') }}</button>
                                         </div>
                                     </form><!-- End Profile Edit Form -->
 
@@ -148,7 +135,7 @@
                                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Current Password') }}</label>
                 
                                             <div class="col-md-6">
-                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                                <input id="password" type="password" class="form-control mb-3 @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                 
                                                 @error('password')
                                                     <span class="invalid-feedback" role="alert">
@@ -162,7 +149,7 @@
                                             <label for="newpassword" class="col-md-4 col-form-label text-md-right">{{ __('New Password') }}</label>
                 
                                             <div class="col-md-6">
-                                                <input id="newpassword" type="password" class="form-control @error('newpassword') is-invalid @enderror" name="newpassword" required autocomplete="new-password">
+                                                <input id="newpassword" type="password" class="form-control mb-3 @error('newpassword') is-invalid @enderror" name="newpassword" required autocomplete="new-password">
                 
                                                 @error('newpassword')
                                                     <span class="invalid-feedback" role="alert">
@@ -176,7 +163,7 @@
                                             <label for="newpassword_confirmation" class="col-md-4 col-form-label text-md-right">{{ __('Confirm New Password') }}</label>
                 
                                             <div class="col-md-6">
-                                                <input id="newpassword_confirmation" type="password" class="form-control" name="newpassword_confirmation" required autocomplete="new-password">
+                                                <input id="newpassword_confirmation" type="password" class="form-control mb-3" name="newpassword_confirmation" required autocomplete="new-password">
                                             </div>
                                         </div>
                 

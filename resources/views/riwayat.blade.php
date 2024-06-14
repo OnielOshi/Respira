@@ -11,7 +11,7 @@
                     <h5 class="card-title fs-5">{{ __('Tidak Stress') }}</h5>
                     <div class="d-flex align-items-center justify-content-center">
                         <div class="ps-3">
-                            <h6 class="fs-5 text-success fw-bold">{{ $latestDiagnosa->persentase_penyakit_1 }}%</h6>
+                            <h6 class="fs-5 text-primary fw-bold">{{ $latestDiagnosa->persentase_penyakit_1 }}%</h6>
                         </div>
                     </div>
                 </div>
@@ -78,14 +78,5 @@
         var chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
     </script>
-    </div>
-
-
-
-    <div class="container mb-5">
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <i class="bi bi-exclamation-triangle me-1"></i>
-            A simple warning alert with icon—check it out!
-        </div>
     </div>
 @endsection
