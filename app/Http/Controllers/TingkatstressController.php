@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Tingkatstress;
+use App\Models\Relasi;
 use Illuminate\Http\Request;
 
 class TingkatstressController extends Controller
@@ -56,11 +57,27 @@ class TingkatstressController extends Controller
 
     // DELETE STRESS QUERY 
     public function destroy($kode_stress)
-    {
-        $tingkatStress = Tingkatstress::find($kode_stress);
-        $tingkatStress->delete();
+{
+    // Temukan tingkat stress berdasarkan $kode_stress
+    $tingkatStress = Tingkatstress::find($kode_stress);
 
+    if (!$tingkatStress) {
         return redirect()->route('tingkat_stress.index')
-            ->with('success', 'Tingkat Stress berhasil dihapus.');
-    } 
+            ->with('error', 'Tingkat Stress tidak ditemukan.');
+    }
+
+    // Hapus semua relasi yang terkait dengan tingkat stress ini
+    $relasiGejalas = Relasi::where('kode_stress', $tingkatStress->kode_stress)->get();
+
+    foreach ($relasiGejalas as $relasi) {
+        $relasi->delete();
+    }
+
+    // Setelah menghapus relasi, hapus tingkat stress itu sendiri
+    $tingkatStress->delete();
+
+    return redirect()->route('tingkat_stress.index')
+        ->with('success', 'Tingkat Stress beserta relasi gejala berhasil dihapus.');
+}
+
 }

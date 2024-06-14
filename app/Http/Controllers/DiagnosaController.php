@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Gejala;
 use App\Models\Relasi;
 use App\Models\Tingkatstress;
+use App\Models\Diagnosa;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class DiagnosaController extends Controller
@@ -58,8 +60,22 @@ class DiagnosaController extends Controller
             // Simpan hasil untuk penyakit ini
             $cfResults[$tingkatStress->kode_stress] = $cfCombine;
         }
+        $user_id = Auth::id();
+        $waktu_diagnosa = now();
+
+        Diagnosa::create([
+            'user_id' => $user_id,
+            'waktu_diagnosa' => $waktu_diagnosa,
+            'persentase_penyakit_1' => $cfResults['P01'] ?? 0,
+            'persentase_penyakit_2' => $cfResults['P02'] ?? 0,
+            'persentase_penyakit_3' => $cfResults['P03'] ?? 0,
+            'persentase_penyakit_4' => $cfResults['P04'] ?? 0,
+        ]);
+
 
         // Kembalikan hasil ke view
-        return view('diagnosa_result', compact('cfResults'));
+        return view('hasil', [
+            'cfResults' => $cfResults
+        ]);
     }
 }
