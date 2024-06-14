@@ -1,6 +1,7 @@
 <div class="container-fluid fixed-top">
     <nav class="navbar navbar-expand-lg rounded-5 mt-3 p-3" style="background-color: #08254F">
         <div class="container-fluid d-flex justify-content-between align-items-center">
+
             <a class="navbar-brand fw-bold" href="{{ route('dashboard') }}" style="color: white">Respira</a>
 
             <!-- Toggle button untuk menu responsif -->
@@ -15,17 +16,18 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto fw-bold">
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="{{ route('dashboard') }}" style="color: white">Beranda</a>
+                        <a class="nav-link" href="{{ route('dashboard') }}" style="color: white">{{ __('Dashboard') }}</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="{{ route('tingkat_stress.index') }}" style="color: white">Tingkat Stress</a>
+                        <a class="nav-link" href="{{ route('tingkat_stress.index') }}" style="color: white">{{ __('Tinkat Stress') }}</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="{{ route('gejala.index') }}" style="color: white">Gejala</a>
+                        <a class="nav-link" href="{{ route('gejala.index') }}" style="color: white">{{ __('Gejala') }}</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="{{ route('relasi.index') }}" style="color: white">Relasi</a>
-                    </li
+                        <a class="nav-link" href="{{ route('relasi.index') }}" style="color: white">{{ __('Relasi') }}</a>
+                    </li>
+
                 </ul>
 
                 <ul class="navbar-nav fw-bold">
@@ -50,6 +52,10 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('profile') }}">
+                                    {{ __('Profile') }}
+                                </a>
+
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">

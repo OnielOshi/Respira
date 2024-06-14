@@ -74,7 +74,7 @@
                                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                                     <!-- Profile Edit Form -->
-                                    <form action="{{ route('profile.update', $user->id) }}" method="POST"
+                                    <form action="{{ route('profile.update') }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
@@ -140,7 +140,7 @@
 
                                 <div class="tab-pane fade pt-3" id="profile-change-password">
                                     <!-- Change Password Form -->
-                                    {{-- <form method="POST" action="{{ route('profile.changePassword', $user->id) }}">
+                                    <form method="POST" action="{{ route('profile.changePassword') }}">
                                         @csrf
                                         @method('PUT')
                 
@@ -187,7 +187,7 @@
                                                 </button>
                                             </div>
                                         </div>
-                                    </form><!-- End Change Password Form --> --}}
+                                    </form><!-- End Change Password Form -->
 
                                 </div>
 

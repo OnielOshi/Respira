@@ -11,6 +11,11 @@ class Diagnosa extends Model
 
     protected $table = 'diagnoses';
     
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     protected $fillable = [
         'user_id',
         'waktu_diagnosa',
@@ -19,8 +24,4 @@ class Diagnosa extends Model
         'persentase_penyakit_3',           
         'persentase_penyakit_4',
     ];
-    // public function users()
-    // {
-    //     return $this->belongsTo(User::class, 'user_id');
-    // }
 }
