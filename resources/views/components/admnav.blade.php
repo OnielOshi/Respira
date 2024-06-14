@@ -19,7 +19,7 @@
                         <a class="nav-link" href="{{ route('dashboard') }}" style="color: white">{{ __('Dashboard') }}</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="{{ route('tingkat_stress.index') }}" style="color: white">{{ __('Tinkat Stress') }}</a>
+                        <a class="nav-link" href="{{ route('tingkat_stress.index') }}" style="color: white">{{ __('Tingkat Stress') }}</a>
                     </li>
                     <li class="nav-item mx-2">
                         <a class="nav-link" href="{{ route('gejala.index') }}" style="color: white">{{ __('Gejala') }}</a>

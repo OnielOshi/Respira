@@ -3,7 +3,7 @@
 @section('admcontent')
     <div class="container">
         <div class="pagetitle mb-3">
-            <h1>Dashboard</h1>
+            <h1>{{ __('Dashboard') }}</h1>
         </div>
         <div class="row justify-content-center">
             <div class="col-xxl-3 col-xl-4">
@@ -42,17 +42,17 @@
                 <div class="col-12">
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
-                            <h5 class="card-title">Riwayat Diagnosa</h5>
+                            <h5 class="card-title">{{ __('Riwayat Diagnosa') }}</h5>
 
                             <table id="example" class="table table-borderless datatable">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Nama</th>
-                                        <th scope="col" class="text-center">Tidak Stress</th>
-                                        <th scope="col" class="text-center">Stress Rendah</th>
-                                        <th scope="col" class="text-center">Stress Sedang</th>
-                                        <th scope="col" class="text-center">Stress Tinggi</th>
+                                        <th scope="col">{{ __('#') }}</th>
+                                        <th scope="col">{{ __('Nama') }}</th>
+                                        <th scope="col" class="text-center">{{ __('Tidak Stress') }}</th>
+                                        <th scope="col" class="text-center">{{ __('Stress Rendah') }}</th>
+                                        <th scope="col" class="text-center">{{ __('Stress Sedang') }}</th>
+                                        <th scope="col" class="text-center">{{ __('Stress Tinggi') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>

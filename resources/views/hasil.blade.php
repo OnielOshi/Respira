@@ -3,7 +3,7 @@
 @section('content')
     <div class="container d-flex flex-column justify-content-center rounded-4">
         <div class="pagetitle container-md-12 m-4 d-flex justify-content-center">
-            <h1>Hasil Diagnosa</h1>
+            <h1>{{ __('Hasil Diagnosa') }}</h1>
         </div>
         <div class="container-md-12">
             <div id="barChart" class="mb-4"></div>
@@ -36,8 +36,8 @@
                 });
             </script>
             <div class="container d-flex justify-content-center mb-4">
-                <a href="{{ route('home') }}" type="button" class="btn btn-primary me-3">Kembali ke Beranda</a>
-                <a href="{{ route('riwayat') }}" type="button" class="btn btn-warning">Ke Riwayat</a>
+                <a href="{{ route('home') }}" type="button" class="btn btn-primary me-3">{{ __('Kembali ke Beranda') }}</a>
+                <a href="{{ route('riwayat') }}" type="button" class="btn btn-warning">{{ __('Ke Riwayat') }}</a>
             </div>
         </div>
     </div>
