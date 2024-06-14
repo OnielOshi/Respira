@@ -1,7 +1,7 @@
 <div class="container-fluid fixed-top">
     <nav class="navbar navbar-expand-lg rounded-5 mt-3 p-3" style="background-color: #08254F">
         <div class="container-fluid d-flex justify-content-between align-items-center">
-            <a class="navbar-brand fw-bold" href="#" style="color: white">Respira</a>
+            <a class="navbar-brand fw-bold" href="{{ route('home') }}" style="color: white">Respira</a>
 
             <!-- Toggle button untuk menu responsif -->
             <button class="navbar-toggler navbar-light" type="button" data-bs-toggle="collapse"
