@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Gejala;
+use App\Models\Relasi;
 use Illuminate\Http\Request;
 
 class GejalaController extends Controller
@@ -55,11 +56,21 @@ class GejalaController extends Controller
 
     // DELETE GEJALA QUERY
     public function destroy($kode_gejala)
-    {
-        $gejala = Gejala::findOrFail($kode_gejala);
-        $gejala->delete();
+{
+    $gejala = Gejala::findOrFail($kode_gejala);
 
-        return redirect()->route('gejala.index')
-            ->with('success', 'Gejala berhasil dihapus.');
+    // Hapus semua relasi yang terkait dengan gejala ini
+    $relasiGejalas = Relasi::where('kode_gejala', $gejala->kode_gejala)->get();
+
+    foreach ($relasiGejalas as $relasi) {
+        $relasi->delete();
     }
+
+    // Hapus gejala itu sendiri
+    $gejala->delete();
+
+    return redirect()->route('gejala.index')
+        ->with('success', 'Gejala beserta relasi berhasil dihapus.');
+}
+
 }

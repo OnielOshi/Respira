@@ -19,6 +19,12 @@ class ProfileController extends Controller
         return view('profile', compact('user'));
     }
 
+    public function admindex()
+    {
+        $user = Auth::user();
+        return view('dashboard.admprofile', compact('user'));
+    }
+
     public function update(Request $request){
         $id = Auth::id();
         $user = User::findOrFail($id);

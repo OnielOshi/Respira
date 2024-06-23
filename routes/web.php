@@ -39,3 +39,4 @@ Route::put('gejala/{kode_gejala}', [GejalaController::class, 'edit'])->name('gej
 Route::resource('relasi', RelasiController::class);
 Route::put('relasi/{id}', [RelasiController::class, 'edit'])->name('relasi.edit');
 
+Route::get('/dashboard/admprofile', [ProfileController::class, 'admindex'])->name('dashboard.admprofile');

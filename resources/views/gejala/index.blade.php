@@ -22,11 +22,7 @@
                     <td>{{ $item->nama_gejala }}</td>
                     <td>
                         <a href="{{ route('gejala.edit', $item->kode_gejala) }}" class="btn btn-warning btn-sm">{{ __('Edit') }}</a>
-                        <form action="{{ route('gejala.destroy', $item->kode_gejala) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">{{ __('Hapus') }}</button>
-                        </form>
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-kode="{{ $item->kode_gejala }}">{{ __('Hapus') }}</button>
                     </td>
                 </tr>
                 @endforeach
@@ -34,4 +30,39 @@
         </table>
     </div>
 </div>
+
+<!-- Modal Konfirmasi Penghapusan -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">{{ __('Konfirmasi Penghapusan') }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ __('Apakah Anda yakin ingin menghapus gejala ini? Relasi terkait juga akan dihapus.') }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Batal') }}</button>
+                <form id="deleteForm" action="" method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">{{ __('Hapus') }}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#deleteModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var kodeGejala = button.data('kode');
+        var action = "{{ route('gejala.destroy', '') }}/" + kodeGejala;
+        var modal = $(this);
+        modal.find('#deleteForm').attr('action', action);
+    });
+</script>
 @endsection

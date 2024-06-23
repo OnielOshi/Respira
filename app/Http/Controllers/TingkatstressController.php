@@ -19,18 +19,26 @@ class TingkatstressController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'kode_stress' => 'required|string|max: 4',
-            'nama_tingkat_stress' => 'required|string|max: 255',
-            'keterangan' => 'required|string',
-        ]);
+{
+    $request->validate([
+        'kode_stress' => 'required|string|max:4',
+        'nama_tingkat_stress' => 'required|string|max:255',
+        'keterangan' => 'required|string',
+    ]);
 
-        Tingkatstress::create($request->all());
+    // Lakukan pengecekan apakah kode_stress sudah ada sebelumnya
+    $existingTingkatStress = Tingkatstress::where('kode_stress', $request->kode_stress)->first();
 
-        return redirect()->route('tingkat_stress.index')
-            ->with('success', 'Tingkat Stress berhasil ditambahkan.');
+    if ($existingTingkatStress) {
+        return back()->with('error', 'Kode Tingkat Stress sudah ada.')->withInput();
     }
+
+    // Jika validasi berhasil dan kode_stress belum ada, lanjutkan untuk menyimpan data
+    Tingkatstress::create($request->all());
+
+    return redirect()->route('tingkat_stress.index')
+        ->with('success', 'Tingkat Stress berhasil ditambahkan.');
+}
 
     public function show($kode_stress)
     {
@@ -42,22 +50,32 @@ class TingkatstressController extends Controller
     // UPDATE STRESS QUERY
     public function update(Request $request, $kode_stress)
     {
-        $request->validate([
-            'kode_stress' => 'required|string|max: 4',
-            'nama_tingkat_stress' => 'required|string|max: 255',
-            'keterangan' => 'required|string',
-        ]);
+    $request->validate([
+        'kode_stress' => 'required|string|max:4',
+        'nama_tingkat_stress' => 'required|string|max:255',
+        'keterangan' => 'required|string',
+    ]);
 
-        $tingkatStress = Tingkatstress::find($kode_stress);
-        $tingkatStress->update($request->all());
+    // Periksa apakah kode_stress sudah ada di database, kecuali yang sedang diupdate
+    $existingTingkatStress = Tingkatstress::where('kode_stress', $request->kode_stress)
+                                           ->where('kode_stress', '!=', $kode_stress)
+                                           ->first();
 
-        return redirect()->route('tingkat_stress.index')
-            ->with('success', 'Tingkat Stress berhasil diupdate.');
+    if ($existingTingkatStress) {
+        return back()->with('error', 'Kode Tingkat Stress sudah ada.')->withInput();
     }
+
+    $tingkatStress = Tingkatstress::find($kode_stress);
+    $tingkatStress->update($request->all());
+
+    return redirect()->route('tingkat_stress.index')
+        ->with('success', 'Tingkat Stress berhasil diupdate.');
+}
+
 
     // DELETE STRESS QUERY 
     public function destroy($kode_stress)
-{
+    {
     // Temukan tingkat stress berdasarkan $kode_stress
     $tingkatStress = Tingkatstress::find($kode_stress);
 
@@ -78,6 +96,6 @@ class TingkatstressController extends Controller
 
     return redirect()->route('tingkat_stress.index')
         ->with('success', 'Tingkat Stress beserta relasi gejala berhasil dihapus.');
-}
+    }
 
 }
