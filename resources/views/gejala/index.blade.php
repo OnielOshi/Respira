@@ -22,7 +22,10 @@
                     <td>{{ $item->nama_gejala }}</td>
                     <td>
                         <a href="{{ route('gejala.edit', $item->kode_gejala) }}" class="btn btn-warning btn-sm">{{ __('Edit') }}</a>
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-kode="{{ $item->kode_gejala }}">{{ __('Hapus') }}</button>
+                        <!-- <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-kode="{{ $item->kode_gejala }}">{{ __('Hapus') }}</button> -->
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-kode="{{ $item->kode_gejala }}">
+                            {{ __('Hapus') }}
+                        </button>
                     </td>
                 </tr>
                 @endforeach
@@ -46,7 +49,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Batal') }}</button>
-                <form id="deleteForm" action="" method="POST" class="d-inline">
+                <!-- Form untuk DELETE -->
+                <form id="deleteForm" method="POST" action="">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">{{ __('Hapus') }}</button>
@@ -57,12 +61,17 @@
 </div>
 
 <script>
-    $('#deleteModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var kodeGejala = button.data('kode');
-        var action = "{{ route('gejala.destroy', '') }}/" + kodeGejala;
-        var modal = $(this);
-        modal.find('#deleteForm').attr('action', action);
+    $(document).ready(function() {
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button yang membuka modal
+            var kodeGejala = button.data('kode'); // Ambil data kode dari button
+
+            // Set action form untuk menghapus gejala dengan kodeGejala yang sesuai
+            var action = "{{ route('gejala.destroy', '') }}/" + kodeGejala;
+            $('#deleteForm').attr('action', action);
+        });
     });
 </script>
+
+
 @endsection

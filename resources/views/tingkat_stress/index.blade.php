@@ -59,12 +59,15 @@
 </div>
 
 <script>
-    $('#deleteModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var kodeStress = button.data('kode');
-        var action = "{{ route('tingkat_stress.destroy', '') }}/" + kodeStress;
-        var modal = $(this);
-        modal.find('#deleteForm').attr('action', action);
+    $(document).ready(function() {
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button yang membuka modal
+            var kodeStress = button.data('kode'); // Ambil data kode dari button
+
+            // Set action form untuk menghapus tingkat stress dengan kodeStress yang sesuai
+            var action = "{{ route('tingkat_stress.destroy', '') }}/" + kodeStress;
+            $('#deleteForm').attr('action', action);
+        });
     });
 </script>
 @endsection

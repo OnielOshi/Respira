@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Relasi;
 use App\Models\Tingkatstress;
 use App\Models\Gejala;
@@ -10,15 +11,19 @@ class RelasiController extends Controller
 {
     public function index()
     {
-        $relasis = Relasi::all();
-        return view('relasi.index', compact('relasis'));
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('home')->with('error', 'Unauthorized access.');
+        } else {
+            $relasis = Relasi::all();
+            return view('relasi.index', compact('relasis'));
+        }
     }
 
     public function create()
     {
         $stress = Tingkatstress::all();
         $gejalas = Gejala::all();
-        return view('relasi.create', compact('stress','gejalas'));
+        return view('relasi.create', compact('stress', 'gejalas'));
     }
 
     public function store(Request $request)
@@ -42,7 +47,7 @@ class RelasiController extends Controller
         $relasi = Relasi::findOrFail($id);
         $stress = Tingkatstress::all();
         $gejalas = Gejala::all();
-        return view('relasi.edit', compact('stress','gejalas','relasi'));
+        return view('relasi.edit', compact('stress', 'gejalas', 'relasi'));
     }
 
     // UPDATE RELASI QUERY
