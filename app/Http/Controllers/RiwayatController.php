@@ -15,6 +15,7 @@ class RiwayatController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function index()
     {
         // Ambil diagnosa terakhir
@@ -27,6 +28,11 @@ class RiwayatController extends Controller
             ->orderBy('waktu_diagnosa', 'asc')
             ->take(10)
             ->get();
+
+        // Check if diagnoses exist
+        if ($diagnoses->isEmpty()) {
+            return view('riwayat', ['noData' => true]);
+        }
 
         // Format data untuk chart
         $data = [];
@@ -70,7 +76,6 @@ class RiwayatController extends Controller
                 'data' => $categoryData[$category],
             ];
         }
-
 
         // Kirim data diagnosa dan data chart ke view 'riwayat'
         return view('riwayat', compact('latestDiagnosa', 'data'));

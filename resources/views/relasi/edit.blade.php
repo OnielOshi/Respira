@@ -5,6 +5,11 @@
     <div class="card mx-auto" style="max-width: 600px;">
         <div class="card-body">
             <h3 class="card-title text-center mb-4">{{ __('Edit Relasi') }}</h3>
+            @if ($errors->any() || session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
             <form action="{{ route('relasi.update', $relasi->id) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -26,11 +31,11 @@
                 </div>
                 <div class="mb-3">
                     <label for="mb" class="form-label">{{ __('MB') }}</label>
-                    <input type="text" name="mb" id="mb" class="form-control" value="{{ $relasi->mb }}">
+                    <input type="text" name="mb" id="mb" class="form-control" value="{{ old('mb', $relasi->mb) }}">
                 </div>
                 <div class="mb-3">
                     <label for="md" class="form-label">{{ __('MD') }}</label>
-                    <input type="text" name="md" id="md" class="form-control" value="{{ $relasi->md }}">
+                    <input type="text" name="md" id="md" class="form-control" value="{{ old('md', $relasi->md) }}">
                 </div>
                 <button type="submit" class="btn btn-primary w-100">{{ __('Simpan') }}</button>
             </form>

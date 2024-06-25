@@ -29,11 +29,20 @@ class RelasiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kode_stress' => 'required|string|max: 4',
-            'kode_gejala' => 'required|string|max: 4',
+            'kode_stress' => 'required|string|max:4',
+            'kode_gejala' => 'required|string|max:4',
             'mb' => 'required|numeric',
             'md' => 'required|numeric',
         ]);
+
+        // Check if the relasi already exists
+        $existingRelasi = Relasi::where('kode_stress', $request->kode_stress)
+            ->where('kode_gejala', $request->kode_gejala)
+            ->first();
+
+        if ($existingRelasi) {
+            return redirect()->back()->withInput()->with('error', 'Relasi sudah ada.');
+        }
 
         Relasi::create($request->all());
 
@@ -52,21 +61,31 @@ class RelasiController extends Controller
 
     // UPDATE RELASI QUERY
     public function update(Request $request, $id)
-    {
-        $relasi = Relasi::findOrFail($id);
+{
+    $relasi = Relasi::findOrFail($id);
 
-        $request->validate([
-            'kode_stress' => 'required|string|max: 4',
-            'kode_gejala' => 'required|string|max: 4',
-            'mb' => 'required|numeric',
-            'md' => 'required|numeric',
-        ]);
+    $request->validate([
+        'kode_stress' => 'required|string|max:4',
+        'kode_gejala' => 'required|string|max:4',
+        'mb' => 'required|numeric',
+        'md' => 'required|numeric',
+    ]);
 
-        $relasi->update($request->all());
+    // Check if the relasi already exists with a different id
+    $existingRelasi = Relasi::where('kode_stress', $request->kode_stress)
+                            ->where('kode_gejala', $request->kode_gejala)
+                            ->where('id', '!=', $id)
+                            ->first();
 
-        return redirect()->route('relasi.index')
-            ->with('success', 'Relasi berhasil diperbarui.');
+    if ($existingRelasi) {
+        return redirect()->back()->withInput()->with('error', 'Relasi sudah ada');
     }
+
+    $relasi->update($request->all());
+
+    return redirect()->route('relasi.index')
+        ->with('success', 'Relasi berhasil diperbarui.');
+}
 
     // DELETE RELASI QUERY
     public function destroy($id)

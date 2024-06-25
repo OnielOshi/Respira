@@ -25,7 +25,7 @@
                     <td>{{ $item->mb }}</td>
                     <td>{{ $item->md }}</td>
                     <td>
-                        <a href="{{ route('relasi.show', $item->id) }}" class="btn btn-warning btn-sm">{{ __('Edit') }}</a>
+                        <a href="{{ route('relasi.edit', $item->id) }}" class="btn btn-warning btn-sm">{{ __('Edit') }}</a>
                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-id="{{ $item->id }}">{{ __('Hapus') }}</button>
                     </td>
                 </tr>
@@ -61,12 +61,15 @@
 </div>
 
 <script>
-    $('#deleteModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var id = button.data('id');
-        var action = "{{ route('relasi.destroy', '') }}/" + id;
-        var modal = $(this);
-        modal.find('#deleteForm').attr('action', action);
+    $(document).ready(function() {
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button yang membuka modal
+            var id = button.data('id'); // Ambil data id dari button
+
+            // Set action form untuk menghapus relasi dengan id yang sesuai
+            var action = "{{ route('relasi.destroy', '') }}/" + id;
+            $('#deleteForm').attr('action', action);
+        });
     });
 </script>
 @endsection
