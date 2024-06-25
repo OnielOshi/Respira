@@ -9,8 +9,12 @@ class TingkatstressController extends Controller
 {
     public function index()
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('home')->with('error', 'Unauthorized access.');
+        } else {
         $stress = Tingkatstress::all();
         return view('tingkat_stress.index', compact('stress'));
+        }
     }
 
     public function create()
@@ -79,11 +83,6 @@ class TingkatstressController extends Controller
     // Temukan tingkat stress berdasarkan $kode_stress
     $tingkatStress = Tingkatstress::find($kode_stress);
 
-    if (!$tingkatStress) {
-        return redirect()->route('tingkat_stress.index')
-            ->with('error', 'Tingkat Stress tidak ditemukan.');
-    }
-
     // Hapus semua relasi yang terkait dengan tingkat stress ini
     $relasiGejalas = Relasi::where('kode_stress', $tingkatStress->kode_stress)->get();
 
@@ -97,5 +96,4 @@ class TingkatstressController extends Controller
     return redirect()->route('tingkat_stress.index')
         ->with('success', 'Tingkat Stress beserta relasi gejala berhasil dihapus.');
     }
-
 }

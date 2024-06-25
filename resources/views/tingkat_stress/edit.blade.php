@@ -15,7 +15,7 @@
                 @method('PUT')
                 <div class="mb-3">
                     <label for="kode_stress" class="form-label">{{ __('Kode Tingkat Stress') }}</label>
-                    <input type="text" name="kode_stress" id="kode_stress" class="form-control" value="{{ old('kode_stress', $tingkatStress->kode_stress) }}">
+                    <input type="text" name="kode_stress" id="kode_stress" class="form-control" value="{{ old('kode_stress', $tingkatStress->kode_stress) }}" readonly>
                 </div>
                 <div class="mb-3">
                     <label for="nama_tingkat_stress" class="form-label">{{ __('Tingkat Stress') }}</label>

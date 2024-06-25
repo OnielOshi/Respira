@@ -21,33 +21,38 @@ class ProfileController extends Controller
 
     public function admindex()
     {
-        $user = Auth::user();
-        return view('dashboard.admprofile', compact('user'));
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('home')->with('error', 'Unauthorized access.');
+        } else {
+            $user = Auth::user();
+            return view('dashboard.admprofile', compact('user'));
+        }
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $id = Auth::id();
         $user = User::findOrFail($id);
 
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,'. $user->id,
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'notelp' => 'required|string|max:13',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        
+
         if ($request->hasFile('foto')) {
-            $imageName = time().'.'.$request->foto->extension();
+            $imageName = time() . '.' . $request->foto->extension();
             $request->foto->move(public_path('build/assets/img'), $imageName);
             $validatedData['foto'] = $imageName;
         }
-        
+
         if ($request->password) {
             $validatedData['password'] = Hash::make($request->password);
         } else {
             unset($validatedData['password']);
         }
-        
+
         $user->fill($validatedData);
         $user->update($validatedData);
 

@@ -23,7 +23,6 @@ Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])
 Route::put('profile/update', [ProfileController::class, 'update'])->name('profile.update');
 Route::put('profile/changePassword', [ProfileController::class, 'changePassword'])->name('profile.changePassword');
 
-route::get('hasil', [App\Http\Controllers\HasilController::class, 'index'])->name('hasil');
 
 Route::post('diagnosa', [App\Http\Controllers\DiagnosaController::class, 'processDiagnosis'])->name('diagnosa.process');
 
@@ -33,8 +32,10 @@ Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'adminDashb
 Route::resource('tingkat_stress', TingkatstressController::class);
 Route::put('tingkat_stress/{kode_stress}', [TingkatstressController::class, 'edit'])->name('tingkat_stress.edit');
 
+
 Route::resource('gejala', GejalaController::class);
 Route::put('gejala/{kode_gejala}', [GejalaController::class, 'edit'])->name('gejala.edit');
+Route::delete('gejala/{kode_gejala}', [GejalaController::class, 'destroy'])->name('gejala.destroy');
 
 Route::resource('relasi', RelasiController::class);
 Route::put('relasi/{id}', [RelasiController::class, 'edit'])->name('relasi.edit');
