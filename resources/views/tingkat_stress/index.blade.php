@@ -3,9 +3,6 @@
 @section('admcontent')
 <div class="container mt-1">
     <h3 class="text-center">{{ __('Daftar Tingkat Stress') }}</h3>
-    <div class="d-flex justify-content-left mb-3">
-        <a href="{{ route('tingkat_stress.create') }}" class="btn btn-primary">{{ __('Tambah Data') }}</a>
-    </div>
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
             <thead class="thead-dark">
@@ -24,7 +21,6 @@
                     <td>{{ $item->keterangan }}</td>
                     <td>
                         <a href="{{ route('tingkat_stress.edit', $item->kode_stress) }}" class="btn btn-warning btn-sm">{{ __('Edit') }}</a>
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-kode="{{ $item->kode_stress }}">{{ __('Hapus') }}</button>
                     </td>
                 </tr>
                 @endforeach

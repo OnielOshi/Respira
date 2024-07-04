@@ -17,7 +17,7 @@
                         <h5 class="card-title fs-5">{{ __('Tidak Stress') }}</h5>
                         <div class="d-flex align-items-center justify-content-center">
                             <div class="ps-3">
-                                <h6 class="fs-5 text-primary fw-bold">{{ $latestDiagnosa->persentase_penyakit_1 }}%</h6>
+                                <h6 class="fs-5 text-primary fw-bold">{{ $latestDiagnosa->persentase_penyakit_1 }}</h6>
                             </div>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                         <h5 class="card-title fs-5">{{ __('Stress Rendah') }}</h5>
                         <div class="d-flex align-items-center justify-content-center">
                             <div class="ps-3">
-                                <h6 class="fs-5 text-info fw-bold">{{ $latestDiagnosa->persentase_penyakit_2 }}%</h6>
+                                <h6 class="fs-5 text-info fw-bold">{{ $latestDiagnosa->persentase_penyakit_2 }}</h6>
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                         <h5 class="card-title fs-5">{{ __('Stress Sedang') }}</h5>
                         <div class="d-flex align-items-center justify-content-center">
                             <div class="ps-3">
-                                <h6 class="fs-5 text-warning fw-bold">{{ $latestDiagnosa->persentase_penyakit_3 }}%</h6>
+                                <h6 class="fs-5 text-warning fw-bold">{{ $latestDiagnosa->persentase_penyakit_3 }}</h6>
                             </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                         <h5 class="card-title fs-5">{{ __('Stress Tinggi') }}</h5>
                         <div class="d-flex align-items-center justify-content-center">
                             <div class="ps-3">
-                                <h6 class="fs-5 text-danger fw-bold">{{ $latestDiagnosa->persentase_penyakit_4 }}%</h6>
+                                <h6 class="fs-5 text-danger fw-bold">{{ $latestDiagnosa->persentase_penyakit_4 }}</h6>
                             </div>
                         </div>
                     </div>

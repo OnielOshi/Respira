@@ -19,7 +19,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="nama_gejala" class="form-label">{{ __('Gejala') }}</label>
-                    <input type="text" name="nama_gejala" id="nama_gejala" class="form-control" value="{{ old('nama_gejala', $gejala->nama_gejala) }}">
+                    <input type="text" name="nama_gejala" id="nama_gejala" class="form-control" value="{{ old('nama_gejala', $gejala->nama_gejala) }}" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">{{ __('Simpan') }}</button>
             </form>

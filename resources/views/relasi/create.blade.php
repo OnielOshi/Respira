@@ -32,11 +32,11 @@
                 </div>
                 <div class="mb-3">
                     <label for="mb" class="form-label">{{ __('MB') }}</label>
-                    <input type="text" name="mb" id="mb" class="form-control" value="{{ old('mb') }}">
+                    <input type="text" name="mb" id="mb" class="form-control" value="{{ old('mb') }}" required>
                 </div>
                 <div class="mb-3">
                     <label for="md" class="form-label">{{ __('MD') }}</label>
-                    <input type="text" name="md" id="md" class="form-control" value="{{ old('md') }}">
+                    <input type="text" name="md" id="md" class="form-control" value="{{ old('md') }}" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">{{ __('Simpan') }}</button>
             </form>

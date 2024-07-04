@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="text-center mt-4">
-                <a href="#" class="btn btn-primary custom-btn" style="color: #ffffff;">
+                <a href="{{ route('diagnosa') }}" class="btn btn-primary custom-btn" style="color: #ffffff;">
                     {{ __('Periksa Sekarang') }}
                 </a>
             </div>
