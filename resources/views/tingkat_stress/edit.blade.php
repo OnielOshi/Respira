@@ -19,11 +19,11 @@
                 </div>
                 <div class="mb-3">
                     <label for="nama_tingkat_stress" class="form-label">{{ __('Tingkat Stress') }}</label>
-                    <input type="text" name="nama_tingkat_stress" id="nama_tingkat_stress" class="form-control" value="{{ old('nama_tingkat_stress', $tingkatStress->nama_tingkat_stress) }}">
+                    <input type="text" name="nama_tingkat_stress" id="nama_tingkat_stress" class="form-control" value="{{ old('nama_tingkat_stress', $tingkatStress->nama_tingkat_stress) }}" required>
                 </div>
                 <div class="mb-3">
                     <label for="keterangan" class="form-label">{{ __('Keterangan') }}</label>
-                    <input type="text" name="keterangan" id="keterangan" class="form-control" value="{{ old('keterangan', $tingkatStress->keterangan) }}">
+                    <input type="text" name="keterangan" id="keterangan" class="form-control" value="{{ old('keterangan', $tingkatStress->keterangan) }}" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">{{ __('Simpan') }}</button>
             </form>

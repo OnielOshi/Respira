@@ -14,15 +14,15 @@
                 @csrf
                 <div class="mb-3">
                     <label for="kode_stress" class="form-label">{{ __('Kode Tingkat Stress') }}</label>
-                    <input type="text" name="kode_stress" id="kode_stress" class="form-control" value="{{ old('kode_stress') }}">
+                    <input type="text" name="kode_stress" id="kode_stress" class="form-control" value="{{ old('kode_stress') }}" required>
                 </div>
                 <div class="mb-3">
                     <label for="nama_tingkat_stress" class="form-label">{{ __('Tingkat Stress') }}</label>
-                    <input type="text" name="nama_tingkat_stress" id="nama_tingkat_stress" class="form-control" value="{{ old('nama_tingkat_stress') }}">
+                    <input type="text" name="nama_tingkat_stress" id="nama_tingkat_stress" class="form-control" value="{{ old('nama_tingkat_stress') }}" required>
                 </div>
                 <div class="mb-3">
                     <label for="keterangan" class="form-label">{{ __('Keterangan') }}</label>
-                    <input type="text" name="keterangan" id="keterangan" class="form-control" value="{{ old('keterangan') }}">
+                    <input type="text" name="keterangan" id="keterangan" class="form-control" value="{{ old('keterangan') }}" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">{{ __('Simpan') }}</button>
             </form>
